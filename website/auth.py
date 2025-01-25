@@ -38,25 +38,25 @@ def logout():
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
     if request.method == 'POST':
+        business_name = request.form.get('business_name')
         email = request.form.get('email')
-        first_name = request.form.get('firstName')
-        password1 = request.form.get('password1')
-        password2 = request.form.get('password2')
+        address = request.form.get('address')
+        username = request.form.get('username')
+        password = request.form.get('password')
+        registration_id = request.form.get('registration_id')
 
         user = User.query.filter_by(email=email).first()
         if user:
             flash('Email already exists.', category='error')
         elif len(email) < 4:
             flash('Email must be greater than 3 characters.', category='error')
-        elif len(first_name) < 2:
-            flash('First name must be greater than 1 character.', category='error')
-        elif password1 != password2:
-            flash('Passwords don\'t match.', category='error')
-        elif len(password1) < 7:
+        elif len(username) < 2:
+            flash('Username must be greater than 1 character.', category='error')
+        elif len(password) < 7:
             flash('Password must be at least 7 characters.', category='error')
         else:
-            new_user = User(email=email, first_name=first_name, password=generate_password_hash(
-                password1, method='pbkdf2:sha256'))
+            new_user = User(business_name = business_name, email=email, address = address, username=username, password=generate_password_hash(
+                password, method='pbkdf2:sha256'), registration_id = registration_id)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
