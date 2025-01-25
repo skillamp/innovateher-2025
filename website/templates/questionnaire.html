@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sustainability Assessment Questionnaire</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .results {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #eaf7ea;
+            display: none;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sustainability Assessment Questionnaire</h1>
+    <form id="sustainabilityForm">
+        <div class="question">
+            <p>1. How does your business source its energy?</p>
+            <label><input type="radio" name="energy" value="3"> Primarily from renewable sources (e.g., solar, wind, hydro).</label><br>
+            <label><input type="radio" name="energy" value="2"> A mix of renewable and non-renewable sources.</label><br>
+            <label><input type="radio" name="energy" value="1"> Primarily from non-renewable sources (e.g., coal, natural gas).</label><br>
+            <label><input type="radio" name="energy" value="0"> I’m not sure.</label>
+        </div>
+
+        <div class="question">
+            <p>2. How does your business handle waste?</p>
+            <label><input type="radio" name="waste" value="3"> We minimize waste and recycle most materials.</label><br>
+            <label><input type="radio" name="waste" value="2"> We recycle some materials but could improve.</label><br>
+            <label><input type="radio" name="waste" value="1"> We dispose of most waste without recycling.</label><br>
+            <label><input type="radio" name="waste" value="0"> I’m not sure.</label>
+        </div>
+
+        <div class="question">
+            <p>3. How does your business manage water usage?</p>
+            <label><input type="radio" name="water" value="3"> We actively track and reduce water usage with efficient systems.</label><br>
+            <label><input type="radio" name="water" value="2"> We use water efficiently but don’t track usage regularly.</label><br>
+            <label><input type="radio" name="water" value="1"> We don’t have a system for managing water usage.</label><br>
+            <label><input type="radio" name="water" value="0"> I’m not sure.</label>
+        </div>
+
+        <div class="question">
+            <p>4. How sustainable is your supply chain?</p>
+            <label><input type="radio" name="supply" value="3"> We prioritize suppliers with environmentally friendly practices.</label><br>
+            <label><input type="radio" name="supply" value="2"> Some of our suppliers have sustainable practices.</label><br>
+            <label><input type="radio" name="supply" value="1"> We do not prioritize sustainability in our supply chain.</label><br>
+            <label><input type="radio" name="supply" value="0"> I’m not sure.</label>
+        </div>
+
+        <div class="question">
+            <p>5. Does your business track and reduce carbon emissions?</p>
+            <label><input type="radio" name="carbon" value="3"> Yes, we measure and actively work to reduce emissions.</label><br>
+            <label><input type="radio" name="carbon" value="2"> We are aware of our emissions but don’t track them.</label><br>
+            <label><input type="radio" name="carbon" value="1"> No, we don’t measure or manage carbon emissions.</label><br>
+            <label><input type="radio" name="carbon" value="0"> I’m not sure.</label>
+        </div>
+
+        <div class="question">
+            <p>6. How involved are employees in sustainability initiatives?</p>
+            <label><input type="radio" name="employees" value="3"> Sustainability is a core part of our employee culture and training.</label><br>
+            <label><input type="radio" name="employees" value="2"> Some employees participate in sustainability initiatives.</label><br>
+            <label><input type="radio" name="employees" value="1"> Sustainability is not a focus for employees.</label><br>
+            <label><input type="radio" name="employees" value="0"> I’m not sure.</label>
+        </div>
+
+        <div class="question">
+            <p>7. How does your business contribute to the community?</p>
+            <label><input type="radio" name="community" value="3"> We actively support community projects and local sustainability efforts.</label><br>
+            <label><input type="radio" name="community" value="2"> We occasionally participate in community activities.</label><br>
+            <label><input type="radio" name="community" value="1"> We don’t have a community impact plan.</label><br>
+            <label><input type="radio" name="community" value="0"> I’m not sure.</label>
+        </div>
+
+        <div class="question">
+            <p>8. How sustainable are your products or services?</p>
+            <label><input type="radio" name="products" value="3"> Our products/services are designed to minimize environmental impact.</label><br>
+            <label><input type="radio" name="products" value="2"> Some of our offerings are sustainable, but there’s room for improvement.</label><br>
+            <label><input type="radio" name="products" value="1"> Sustainability is not currently a priority in our offerings.</label><br>
+            <label><input type="radio" name="products" value="0"> I’m not sure.</label>
+        </div>
+
+        <button type="button" onclick="calculateScore()">Submit</button>
+    </form>
+
+    <div class="results" id="results">
+        <h2>Sustainability Level</h2>
+        <p id="score"></p>
+    </div>
+
+    <script>
+        function calculateScore() {
+            const form = document.getElementById('sustainabilityForm');
+            const inputs = form.querySelectorAll('input:checked');
+            let totalScore = 0;
+
+            inputs.forEach(input => {
+                totalScore += parseInt(input.value, 10);
+            });
+
+            const resultsDiv = document.getElementById('results');
+            const scoreParagraph = document.getElementById('score');
+
+            if (totalScore >= 20) {
+                scoreParagraph.textContent = `High Sustainability: ${totalScore} points.`;
+            } else if (totalScore >= 12) {
+                scoreParagraph.textContent = `Moderate Sustainability: ${totalScore} points.`;
+            } else {
+                scoreParagraph.textContent = `Low Sustainability: ${totalScore} points.`;
+            }
+
+            resultsDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
