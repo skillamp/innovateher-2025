@@ -7,6 +7,20 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 flex justify-center items-center h-screen flex-col">
+    <header class="bg-white py-4">
+        <nav class="container mx-auto flex justify-between items-center">
+            <h1 class="text-3xl font-bold">Sustainability Hub</h1>
+            <ul class="flex items-center space-x-4">
+                <li><a href="http://127.0.0.1:5500/website/static/about.html" class="text-gray-600 hover:text-gray-900">About</a></li>
+                <li><a href="#" class="text-gray-600 hover:text-gray-900">Resources</a></li>
+                <li><a href="#" class="text-gray-600 hover:text-gray-900">Community</a></li>
+                <li><a href="http://127.0.0.1:5500/website/static/signup.html" class="text-gray-600 hover:text-gray-900">Sign Up</a></li>
+            </ul>
+            <a href="http://127.0.0.1:5500/website/static/login.html" class="bg-green-300 hover:bg-green-500 text-white font-bold py-2 px-4 rounded">
+                <button> Login</button>
+            </a>
+        </nav>
+    </header>
     <h1 class="text-4xl text-gray-700 font-bold italic mb-4"><i>App Name</i></h1>
     <p class="text-lg text-gray-600 mb-8 text-center">Start your eco journey here</p>
     <div class="bg-white p-8 rounded-lg shadow-md w-1/2">
@@ -36,10 +50,10 @@
                 <label for="business-registration-id" class="block text-gray-700 font-bold mb-2">Business Registration ID:</label>
                 <input type="text" id="business-registration-id" class="block w-full p-2 border border-gray-300 rounded-lg" required>
             </div>
-            <button type="submit" class="bg-green-300 hover:bg-green-500 text-white font-bold py-2 px-4 rounded">Login</button>
+            <button type="submit" class="bg-green-300 hover:bg-green-500 text-white font-bold py-2 px-4 rounded">Sign Up</button>
         </form>
         <div class="mt-4 text-center">
-            <p class="text-gray-600">Don't have an account? <a href="#" class="text-green-300 hover:text-green-500">Sign Up</a></p>
+            <p class="text-gray-600">Already an account? <a href="http://127.0.0.1:5500/website/static/login.html" class="text-green-300 hover:text-green-500">Login</a></p>
         </div>
     </div>
 </body>
