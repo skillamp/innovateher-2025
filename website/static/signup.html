@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex justify-center items-center h-screen flex-col">
+    <h1 class="text-4xl text-gray-700 font-bold italic mb-4"><i>App Name</i></h1>
+    <p class="text-lg text-gray-600 mb-8 text-center">Start your eco journey here</p>
+    <div class="bg-white p-8 rounded-lg shadow-md w-1/2">
+        <h2 class="text-2xl text-gray-700 font-bold mb-4">Business Login</h2>
+        <form>
+            <div class="mb-4">
+                <label for="business-name" class="block text-gray-700 font-bold mb-2">Business Name:</label>
+                <input type="text" id="business-name" class="block w-full p-2 border border-gray-300 rounded-lg" required>
+            </div>
+            <div class="mb-4">
+                <label for="business-email" class="block text-gray-700 font-bold mb-2">Business Email:</label>
+                <input type="email" id="business-email" class="block w-full p-2 border border-gray-300 rounded-lg" required>
+            </div>
+            <div class="mb-4">
+                <label for="address" class="block text-gray-700 font-bold mb-2">Address:</label>
+                <input type="text" id="address" class="block w-full p-2 border border-gray-300 rounded-lg" required>
+            </div>
+            <div class="mb-4">
+                <label for="username" class="block text-gray-700 font-bold mb-2">Username:</label>
+                <input type="text" id="username" class="block w-full p-2 border border-gray-300 rounded-lg" required>
+            </div>
+            <div class="mb-4">
+                <label for="password" class="block text-gray-700 font-bold mb-2">Password:</label>
+                <input type="password" id="password" class="block w-full p-2 border border-gray-300 rounded-lg" required>
+            </div>
+            <div class="mb-4">
+                <label for="business-registration-id" class="block text-gray-700 font-bold mb-2">Business Registration ID:</label>
+                <input type="text" id="business-registration-id" class="block w-full p-2 border border-gray-300 rounded-lg" required>
+            </div>
+            <button type="submit" class="bg-green-300 hover:bg-green-500 text-white font-bold py-2 px-4 rounded">Login</button>
+        </form>
+        <div class="mt-4 text-center">
+            <p class="text-gray-600">Don't have an account? <a href="#" class="text-green-300 hover:text-green-500">Sign Up</a></p>
+        </div>
+    </div>
+</body>
+</html>
