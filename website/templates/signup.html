@@ -1,115 +1,134 @@
 {% extends "base.html" %}
 
 {% block title %}
-Sign Up
+Sign Up - Green Circuit
 {% endblock %}
 
 {% block content %}
-  <form method="POST" action="{{ url_for('auth.sign_up') }}">
-    <h3 align="center">Sign Up</h3>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Green Circuit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-b from-green-50 to-white min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white/80 backdrop-blur-sm fixed w-full z-10 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 21h10a2 2 0 0 0 2-2V9.414a1 1 0 0 0-.293-.707l-5.414-5.414A1 1 0 0 0 12.586 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2z"/>
+                    </svg>
+                    <span class="ml-2 text-xl font-semibold text-green-800">Green Circuit</span>
+                </div>
+                <div class="flex space-x-8">
+                    <a href="#" class="text-green-700 hover:text-green-500 flex items-center">About</a>
+                    <a href="#" class="text-green-700 hover:text-green-500 flex items-center">Resources</a>
+                    <a href="#" class="text-green-700 hover:text-green-500 flex items-center">Community</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-    <!-- Business Name -->
-    <div class="form-group">
-      <label for="business-name">Business Name</label>
-      <input
-        type="text"
-        class="form-control"
-        id="business-name"
-        name="business_name"
-        placeholder="Enter business name"
-        required
-      />
+    <div class="max-w-2xl mx-auto pt-32 px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-green-800">Join Green Circuit</h1>
+            <p class="text-gray-600 mt-2">Start your sustainability journey today</p>
+        </div>
+        
+        <form action="{{ url_for('auth.sign_up') }}" method="POST" class="bg-white p-8 rounded-lg shadow-md">
+            <div class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">
+                            First Name <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" name="first_name" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">
+                            Last Name <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" name="last_name" required
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">
+                        Business Name <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" name="business_name" required
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">
+                        Business Email <span class="text-red-500">*</span>
+                    </label>
+                    <input type="email" name="business_email" required
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">
+                        Username <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" name="username" required
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">
+                        Business ID <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" name="business_id" required
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">
+                        Industry <span class="text-red-500">*</span>
+                    </label>
+                    <select name="industry" required
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
+                        <option value="">Select an industry</option>
+                        <option value="manufacturing">Manufacturing and Industrial</option>
+                        <option value="retail">Retail and E-commerce</option>
+                        <option value="food">Food and Agriculture</option>
+                        <option value="energy">Energy and Utilities</option>
+                        <option value="technology">Technology</option>
+                        <option value="healthcare">Healthcare and Pharmaceuticals</option>
+                        <option value="construction">Construction and Real Estate</option>
+                        <option value="transportation">Transportation and Logistics</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">
+                        Password <span class="text-red-500">*</span>
+                    </label>
+                    <input type="password" name="password" required
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500">
+                </div>
+            </div>
+
+            <div class="mt-8">
+                <button type="submit"
+                    class="w-full bg-green-600 text-white px-4 py-3 rounded-lg hover:bg-green-500 transition-colors">
+                    Create Account
+                </button>
+            </div>
+
+            <div class="mt-4 text-center text-sm text-gray-600">
+                Already have an account? <a href="{{ url_for('auth.login') }}" class="text-green-600 hover:text-green-500">Log in</a>
+            </div>
+        </form>
     </div>
-
-    <!-- Email -->
-    <div class="form-group">
-      <label for="email">Email Address</label>
-      <input
-        type="email"
-        class="form-control"
-        id="email"
-        name="email"
-        placeholder="Enter email"
-        required
-      />
-    </div>
-
-    <!-- Address -->
-    <div class="form-group">
-      <label for="address">Address</label>
-      <input
-        type="text"
-        class="form-control"
-        id="address"
-        name="address"
-        placeholder="Enter address"
-        required
-      />
-    </div>
-
-    <!-- Username -->
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input
-        type="text"
-        class="form-control"
-        id="username"
-        name="username"
-        placeholder="Enter username"
-        required
-      />
-    </div>
-
-    <!-- Password -->
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input
-        type="password"
-        class="form-control"
-        id="password"
-        name="password"
-        placeholder="Enter password"
-        required
-      />
-    </div>
-
-    <!-- Registration ID -->
-    <div class="form-group">
-      <label for="registration-id">Business Registration ID</label>
-      <input
-        type="text"
-        class="form-control"
-        id="registration-id"
-        name="registration_id"
-        placeholder="Enter business registration ID"
-        required
-      />
-    </div>
-
-    <!-- Industry Dropdown -->
-    <div class="form-group">
-      <label for="registration-id">Industry</label>
-      <select
-        class="form-control"
-        id="industry"
-        name="industry"
-        required
-      >
-        <option value="" disabled selected>Select an industry</option>
-        <option value="1">Manufacturing and Industrial</option>
-        <option value="2">Retail / E-Commerce</option>
-        <option value="3">Food and Agriculture</option>
-        <option value="4">Energy and Utilities</option>
-        <option value="5">Technology</option>
-        <option value="6">Healthcare and Pharmaceuticals</option>
-        <option value="7">Construction and Real Estate</option>
-        <option value="8">Transportation and Logistics</option>
-      </select>
-    </div>
-
-    <br />
-
-    <!-- Submit Button -->
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+</body>
+</html>
 {% endblock %}

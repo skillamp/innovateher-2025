@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Circuit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-content">
+                <div class="nav-logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>Green Circuit</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#about" class="nav-link">
+                        <i class="fas fa-book"></i>
+                        About
+                    </a>
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-users"></i>
+                        Community
+                    </a>
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-book-open"></i>
+                        Resources
+                    </a>
+                    <a href="{{ url_for('auth.login') }}" class="login-button">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1>Empowering Women-Owned Businesses Through Sustainable Practices</h1>
+                    <p>This app is designed to help women-owned businesses take meaningful steps toward sustainability by connecting them with other like-minded, eco-conscious women entrepreneurs and sustainable product vendors.</p>
+                    <a href="{{ url_for('auth.sign_up') }}" class="hero-button">
+                        Start Your Journey
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1521510895919-46920266ddb3?auto=format&fit=crop&q=80" alt="Women entrepreneurs collaborating">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community">
+        <div class="community-container">
+            <h2>Join Our Community</h2>
+            <p>Connect with other women entrepreneurs and sustainable product vendors to share knowledge, resources, and best practices.</p>
+            <div class="community-grid">
+                <div class="community-card">
+                    <i class="fas fa-tree"></i>
+                    <h3>Sustainable Practices</h3>
+                    <p>Learn and implement eco-friendly business practices</p>
+                </div>
+                <div class="community-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Network</h3>
+                    <p>Connect with like-minded entrepreneurs</p>
+                </div>
+                <div class="community-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Make an Impact</h3>
+                    <p>Contribute to a sustainable future</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-container">
+            <h2>Our Story</h2>
+            <div class="about-content">
+                <p>We're a team of passionate individuals dedicated to making a positive impact on the environment. Our mission is to provide a platform for people to come together and make a difference.</p>
+                <p>We believe that every small action counts, and that together, we can create a wave of change. Our goal is to inspire and educate people about the importance of living sustainably and reducing their carbon footprint.</p>
+                
+                <div class="values">
+                    <h3>Our Values</h3>
+                    <ul class="values-list">
+                        <li class="values-item">
+                            <i class="fas fa-tree"></i>
+                            <div>
+                                <strong>Sustainability:</strong> We're committed to reducing our impact on the environment and promoting eco-friendly practices.
+                            </div>
+                        </li>
+                        <li class="values-item">
+                            <i class="fas fa-users"></i>
+                            <div>
+                                <strong>Community:</strong> We believe in the power of community and strive to bring people together to make a difference.
+                            </div>
+                        </li>
+                        <li class="values-item">
+                            <i class="fas fa-book-open"></i>
+                            <div>
+                                <strong>Education:</strong> We're dedicated to educating people about the importance of living sustainably and providing resources to help them make a positive impact.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="get-involved">
+                    <a href="{{ url_for('auth.sign_up') }}">
+                        Want to join our mission? Get Involved
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+</body>
+</html>

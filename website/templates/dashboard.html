@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Green Circuit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-b from-green-50 to-white min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white/80 backdrop-blur-sm fixed w-full z-10 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 21h10a2 2 0 0 0 2-2V9.414a1 1 0 0 0-.293-.707l-5.414-5.414A1 1 0 0 0 12.586 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2z"/>
+                    </svg>
+                    <span class="ml-2 text-xl font-semibold text-green-800">Green Circuit</span>
+                </div>
+                <div class="flex space-x-8">
+                    <a href="#" class="text-green-700 hover:text-green-500 flex items-center">About</a>
+                    <a href="#" class="text-green-700 hover:text-green-500 flex items-center">Resources</a>
+                    <a href="#" class="text-green-700 hover:text-green-500 flex items-center">Community</a>
+                    <a href="{{ url_for('auth.logout') }}" class="bg-green-600 text-white px-4 py-2 rounded-lg flex items-center hover:bg-green-500 transition-colors">
+                        Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex h-screen pt-16">
+        <!-- Sidebar -->
+        <div class="w-64 bg-white shadow-lg">
+            <nav class="mt-6">
+                <a href="#" class="flex items-center px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/>
+                        <rect x="9" y="3" width="6" height="4" rx="2"/>
+                        <path d="M9 14l2 2 4-4"/>
+                    </svg>
+                    To-Do
+                </a>
+                <a href="#" class="flex items-center px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    Community
+                </a>
+                <a href="#" class="flex items-center px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                        <line x1="12" y1="22.08" x2="12" y2="12"/>
+                    </svg>
+                    Vendors
+                </a>
+                <a href="#" class="flex items-center px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                    </svg>
+                    Resources
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 overflow-auto">
+            <div class="p-8">
+                <h1 class="text-4xl font-bold text-center mb-12">
+                    Welcome to Your Journey of Positive Impact, 
+                    <span class="text-emerald-600">{{ business_name }}</span>
+                </h1>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <!-- Level Box -->
+                    <a href="#" class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-2xl font-semibold text-green-800">Level</h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 20v-6M6 20V10M18 20V4"/>
+                            </svg>
+                        </div>
+                        <p class="text-lg text-gray-600">Current Level: {{ level }}</p>
+                    </a>
+
+                    <!-- Vendor Box -->
+                    <a href="#" class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-2xl font-semibold text-green-800">Vendors</h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                            </svg>
+                        </div>
+                        <p class="text-lg text-gray-600">{{ vendor_count }} Approved Vendors</p>
+                    </a>
+
+                    <!-- Community Box -->
+                    <a href="#" class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-2xl font-semibold text-green-800">Community</h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <p class="text-lg text-gray-600">{{ community_members }} Active Members</p>
+                    </a>
+
+                    <!-- To-Do Box -->
+                    <a href="#" class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-2xl font-semibold text-green-800">To-Do</h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/>
+                                <rect x="9" y="3" width="6" height="4" rx="2"/>
+                                <path d="M9 14l2 2 4-4"/>
+                            </svg>
+                        </div>
+                        <p class="text-lg text-gray-600">{{ todo_count }} Tasks Pending</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -3,142 +3,450 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sustainability Assessment Questionnaire</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f9;
-        }
-        h1 {
-            text-align: center;
-        }
-        .question {
-            margin-bottom: 20px;
-        }
-        .results {
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            background-color: #eaf7ea;
-            display: none;
-        }
-        button {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <title>Sustainability Assessment - Green Circuit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>Sustainability Assessment Questionnaire</h1>
-
-    <!-- Start of form tag -->
-    <form method="POST" action="{{ url_for('auth.questionnaire') }}">
-        <div class="question">
-            <p>1. How does your business source its energy?</p>
-            <label><input type="radio" name="energy" value="3"> Primarily from renewable sources (e.g., solar, wind, hydro).</label><br>
-            <label><input type="radio" name="energy" value="2"> A mix of renewable and non-renewable sources.</label><br>
-            <label><input type="radio" name="energy" value="1"> Primarily from non-renewable sources (e.g., coal, natural gas).</label><br>
-            <label><input type="radio" name="energy" value="0"> I’m not sure.</label>
+<body class="bg-gradient-to-b from-green-50 to-white min-h-screen pb-12">
+    <!-- Navigation -->
+    <nav class="bg-white/80 backdrop-blur-sm fixed w-full z-10 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 21h10a2 2 0 0 0 2-2V9.414a1 1 0 0 0-.293-.707l-5.414-5.414A1 1 0 0 0 12.586 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2z"/>
+                    </svg>
+                    <span class="ml-2 text-xl font-semibold text-green-800">Green Circuit</span>
+                </div>
+                <div class="flex space-x-8">
+                    <a href="#" class="text-green-700 hover:text-green-500 flex items-center">About</a>
+                    <a href="#" class="text-green-700 hover:text-green-500 flex items-center">Resources</a>
+                    <a href="#" class="text-green-700 hover:text-green-500 flex items-center">Community</a>
+                    <a href="{{ url_for('auth.logout') }}" class="bg-green-600 text-white px-4 py-2 rounded-lg flex items-center hover:bg-green-500 transition-colors">
+                        Logout
+                    </a>
+                </div>
+            </div>
         </div>
+    </nav>
 
-        <div class="question">
-            <p>2. How does your business handle waste?</p>
-            <label><input type="radio" name="waste" value="3"> We minimize waste and recycle most materials.</label><br>
-            <label><input type="radio" name="waste" value="2"> We recycle some materials but could improve.</label><br>
-            <label><input type="radio" name="waste" value="1"> We dispose of most waste without recycling.</label><br>
-            <label><input type="radio" name="waste" value="0"> I’m not sure.</label>
+    <div class="max-w-3xl mx-auto pt-32 px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-green-800">Sustainability Assessment</h1>
+            <p class="text-gray-600 mt-2">Let's evaluate your current sustainability practices</p>
         </div>
+        
+        <form action="{{ url_for('auth.questionnaire') }}" method="POST" class="space-y-8">
+            <!-- Environmental Policy and Management -->
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold text-green-800 mb-6">Environmental Policy and Management</h2>
+                
+                <div class="mb-6">
+                    <p class="text-gray-700 mb-3">Do you have a sustainability or environmental policy in place?</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="radio" name="q1" value="0" required
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">No policy</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q1" value="1"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Policy exists but is not implemented</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q1" value="2"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Policy exists with clear implementation and regular updates</span>
+                        </label>
+                    </div>
+                </div>
 
-        <div class="question">
-            <p>3. How does your business manage water usage?</p>
-            <label><input type="radio" name="water" value="3"> We actively track and reduce water usage with efficient systems.</label><br>
-            <label><input type="radio" name="water" value="2"> We use water efficiently but don’t track usage regularly.</label><br>
-            <label><input type="radio" name="water" value="1"> We don’t have a system for managing water usage.</label><br>
-            <label><input type="radio" name="water" value="0"> I’m not sure.</label>
-        </div>
+                <div class="mb-6">
+                    <p class="text-gray-700 mb-3">Do you track and report your carbon footprint?</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="radio" name="q2" value="0" required
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">No tracking or reporting</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q2" value="1"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Basic tracking or incomplete reporting</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q2" value="2"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Comprehensive tracking with regular, transparent reporting</span>
+                        </label>
+                    </div>
+                </div>
 
-        <div class="question">
-            <p>4. How sustainable is your supply chain?</p>
-            <label><input type="radio" name="supply" value="3"> We prioritize suppliers with environmentally friendly practices.</label><br>
-            <label><input type="radio" name="supply" value="2"> Some of our suppliers have sustainable practices.</label><br>
-            <label><input type="radio" name="supply" value="1"> We do not prioritize sustainability in our supply chain.</label><br>
-            <label><input type="radio" name="supply" value="0"> I’m not sure.</label>
-        </div>
+                <div class="mb-6">
+                    <p class="text-gray-700 mb-3">Are you compliant with all relevant environmental regulations?</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="radio" name="q3" value="0" required
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Not compliant or unknown</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q3" value="1"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Compliant with no active effort to go beyond regulations</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q3" value="2"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Fully compliant and exceeding regulatory requirements</span>
+                        </label>
+                    </div>
+                </div>
 
-        <div class="question">
-            <p>5. Does your business track and reduce carbon emissions?</p>
-            <label><input type="radio" name="carbon" value="3"> Yes, we measure and actively work to reduce emissions.</label><br>
-            <label><input type="radio" name="carbon" value="2"> We are aware of our emissions but don’t track them.</label><br>
-            <label><input type="radio" name="carbon" value="1"> No, we don’t measure or manage carbon emissions.</label><br>
-            <label><input type="radio" name="carbon" value="0"> I’m not sure.</label>
-        </div>
+                <div class="mb-6">
+                    <p class="text-gray-700 mb-3">Do you have clear sustainability goals with timelines?</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="radio" name="q4" value="0" required
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">No goals</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q4" value="1"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Goals exist but are vague or without deadlines</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q4" value="2"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">SMART goals with timelines and progress tracking</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
 
-        <div class="question">
-            <p>6. How involved are employees in sustainability initiatives?</p>
-            <label><input type="radio" name="employees" value="3"> Sustainability is a core part of our employee culture and training.</label><br>
-            <label><input type="radio" name="employees" value="2"> Some employees participate in sustainability initiatives.</label><br>
-            <label><input type="radio" name="employees" value="1"> Sustainability is not a focus for employees.</label><br>
-            <label><input type="radio" name="employees" value="0"> I’m not sure.</label>
-        </div>
+            <!-- Resource Management -->
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold text-green-800 mb-6">Resource Management</h2>
+                
+                <div class="mb-6">
+                    <p class="text-gray-700 mb-3">Do you have waste reduction measures in place?</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="radio" name="q5" value="0" required
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">No waste reduction measures</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q5" value="1"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Basic measures (e.g., recycling)</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q5" value="2"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Advanced measures (e.g., waste audits, composting, circular economy practices)</span>
+                        </label>
+                    </div>
+                </div>
 
-        <div class="question">
-            <p>7. How does your business contribute to the community?</p>
-            <label><input type="radio" name="community" value="3"> We actively support community projects and local sustainability efforts.</label><br>
-            <label><input type="radio" name="community" value="2"> We occasionally participate in community activities.</label><br>
-            <label><input type="radio" name="community" value="1"> We don’t have a community impact plan.</label><br>
-            <label><input type="radio" name="community" value="0"> I’m not sure.</label>
-        </div>
+                <div class="mb-6">
+                    <p class="text-gray-700 mb-3">Do you source energy from renewable sources?</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="radio" name="q6" value="0" required
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">No renewable energy use</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q6" value="1"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Partial use of renewable energy</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q6" value="2"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Majority or fully renewable energy use</span>
+                        </label>
+                    </div>
+                </div>
 
-        <div class="question">
-            <p>8. How sustainable are your products or services?</p>
-            <label><input type="radio" name="products" value="3"> Our products/services are designed to minimize environmental impact.</label><br>
-            <label><input type="radio" name="products" value="2"> Some of our offerings are sustainable, but there’s room for improvement.</label><br>
-            <label><input type="radio" name="products" value="1"> Sustainability is not currently a priority in our offerings.</label><br>
-            <label><input type="radio" name="products" value="0"> I’m not sure.</label>
-        </div>
+                <div class="mb-6">
+                    <p class="text-gray-700 mb-3">What steps are taken to reduce water usage?</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="radio" name="q7" value="0" required
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">No steps to reduce water usage</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q7" value="1"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Some efforts to reduce water usage</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q7" value="2"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Significant water-saving measures and tracking</span>
+                        </label>
+                    </div>
+                </div>
 
-        <button type="submit">Submit</button>
-    </form>
+                <div class="mb-6">
+                    <p class="text-gray-700 mb-3">How does your company track and measure its energy consumption?</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="radio" name="q8" value="0" required
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">No tracking</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q8" value="1"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Basic tracking (e.g., utility bills)</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q8" value="2"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Comprehensive tracking with energy audits and benchmarks</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
 
-    <div class="results" id="results">
-        <h2>Sustainability Level</h2>
-        <p id="score"></p>
+            <!-- Social Responsibility -->
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold text-green-800 mb-6">Social Responsibility</h2>
+                
+                <div class="mb-6">
+                    <p class="text-gray-700 mb-3">Do you have policies for fair wages and ethical labor practices?</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="radio" name="q9" value="0" required
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">No policies</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q9" value="1"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Policies exist but are not monitored</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q9" value="2"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Policies with regular audits and enforcement</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <p class="text-gray-700 mb-3">Do you engage in community or social impact programs?</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="radio" name="q10" value="0" required
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">No engagement</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q10" value="1"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Minimal engagement (e.g., donations)</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q10" value="2"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Active programs with measurable outcomes</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <p class="text-gray-700 mb-3">Do you have diversity, equity, and inclusion (DEI) initiatives?</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="radio" name="q11" value="0" required
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">No DEI initiatives</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q11" value="1"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Basic DEI policies in place</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q11" value="2"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Advanced DEI initiatives with measurable impact</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <p class="text-gray-700 mb-3">Are there any initiatives to support local communities or social causes?</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="radio" name="q12" value="0" required
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">No initiatives</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q12" value="1"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Basic initiatives (e.g., charity events)</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q12" value="2"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Sustained, impactful community engagement</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Supply Chain and Product Development -->
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold text-green-800 mb-6">Supply Chain and Product Development</h2>
+                
+                <div class="mb-6">
+                    <p class="text-gray-700 mb-3">Are your suppliers or partners required to meet sustainability and ethical standards?</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="radio" name="q13" value="0" required
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">No requirements</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q13" value="1"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Minimal requirements or self-assessments</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q13" value="2"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Comprehensive standards with regular audits</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <p class="text-gray-700 mb-3">How are sustainability considerations integrated into product design and development?</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="radio" name="q14" value="0" required
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">No sustainability considerations</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q14" value="1"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Some efforts to make products more sustainable</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q14" value="2"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Fully integrated sustainable design practices</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <p class="text-gray-700 mb-3">What is the company's approach to ethical sourcing and supply chain management?</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="radio" name="q15" value="0" required
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">No approach</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q15" value="1"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Basic ethical sourcing policies</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q15" value="2"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Comprehensive supply chain audits and ethical sourcing</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reporting and Stakeholder Engagement -->
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold text-green-800 mb-6">Reporting and Stakeholder Engagement</h2>
+                
+                <div class="mb-6">
+                    <p class="text-gray-700 mb-3">Do you publish an annual sustainability report?</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="radio" name="q16" value="0" required
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">No report</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q16" value="1"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Informal or occasional reporting</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q16" value="2"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Regular, comprehensive reporting</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <p class="text-gray-700 mb-3">Does the company engage with stakeholders on sustainability issues?</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="radio" name="q17" value="0" required
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">No engagement</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q17" value="1"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Minimal or occasional engagement</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q17" value="2"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Active, regular stakeholder engagement</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <p class="text-gray-700 mb-3">Does the company participate in sustainability reporting frameworks or certifications?</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="radio" name="q18" value="0" required
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">No participation</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q18" value="1"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Limited participation or plans to join</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q18" value="2"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                            <span class="ml-2 text-gray-600">Fully certified or active participation</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8">
+                <button type="submit"
+                    class="w-full bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-500 transition-colors text-lg font-semibold">
+                    Submit Assessment
+                </button>
+            </div>
+        </form>
     </div>
-
-    <script>
-        function calculateScore() {
-            const form = document.getElementById('sustainabilityForm');
-            const inputs = form.querySelectorAll('input:checked');
-            let totalScore = 0;
-
-            inputs.forEach(input => {
-                totalScore += parseInt(input.value, 10);
-            });
-
-            const resultsDiv = document.getElementById('results');
-            const scoreParagraph = document.getElementById('score');
-
-            if (totalScore >= 20) {
-                scoreParagraph.textContent = `High Sustainability: ${totalScore} points.`;
-            } else if (totalScore >= 12) {
-                scoreParagraph.textContent = `Moderate Sustainability: ${totalScore} points.`;
-            } else {
-                scoreParagraph.textContent = `Low Sustainability: ${totalScore} points.`;
-            }
-
-            resultsDiv.style.display = 'block';
-        }
-    </script>
 </body>
 </html>
 

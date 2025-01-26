@@ -1,13 +1,18 @@
-from flask import Blueprint, render_template, request, flash, jsonify
-from flask_login import login_required, current_user
+from flask import Blueprint, render_template, request, flash, jsonify # type: ignore
+from flask_login import login_required, current_user # type: ignore
 from .models import Note
 from . import db
 import json
 
 views = Blueprint('views', __name__)
 
+@views.route('/', methods=['GET'])
+def homepage():
+    return render_template("homepage.html")
 
-@views.route('/', methods=['GET', 'POST'])
+@views.route('/home', methods=['GET', 'POST'])
+
+
 @login_required
 def home():
     if request.method == 'POST': 
