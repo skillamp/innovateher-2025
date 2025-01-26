@@ -107,11 +107,11 @@ def questionnaire():
             sustainability_level = 'Low Sustainability'
 
         if sustainability_level == 'High Sustainability':
-            total_score = 3;
+            total_score = 3
         elif sustainability_level == 'Moderate Sustainability':
-            total_score = 2;
+            total_score = 2
         else:
-            total_score = 1;
+            total_score = 1
 
         # Update user's sustainability level in the database
         current_user.sustainability_level = total_score
