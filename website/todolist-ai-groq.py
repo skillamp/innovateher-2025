@@ -1,19 +1,38 @@
 import os
-
+from flask import Flask, request, jsonify, render_template
 from groq import Groq
 
-client = Groq(
-    api_key=os.environ.get("GROQ_API_KEY"),
-)
+app = Flask(__name__)
 
-chat_completion = client.chat.completions.create(
-    messages=[
-        {
-            "role": "user",
-            "content": "Generate a todo list for a business in the healthcare business who is trying to be more sustainable",
-        }
-    ],
-    model="llama-3.3-70b-versatile",
-)
+# Initialize Groq client
+client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
-print(chat_completion.choices[0].message.content)
+@app.route('/')
+def index():
+    return render_template('index.html')  # Render the HTML page
+
+@app.route('/chat', methods=['POST'])
+def chat():
+    user_message = request.json.get('message')  # Get the message from the frontend
+
+    if not user_message:
+        return jsonify({'error': 'No message provided'}), 400
+
+    try:
+        # Call Groq API to generate a response
+        chat_completion = client.chat.completions.create(
+            messages=[{"role": "user", "content": user_message}],
+            model="llama-3.3-70b-versatile",  # Or whatever model you want to use
+        )
+
+        # Extract the response
+        chatbot_reply = chat_completion.choices[0].message.content
+        return jsonify({'reply': chatbot_reply})
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
