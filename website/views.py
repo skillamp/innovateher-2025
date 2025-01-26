@@ -1,5 +1,5 @@
-from flask import Blueprint, render_template, request, flash, jsonify # type: ignore
-from flask_login import login_required, current_user # type: ignore
+from flask import Blueprint, render_template, request, flash, jsonify
+from flask_login import login_required, current_user
 from .models import Note
 from . import db
 import json
@@ -8,16 +8,11 @@ from groq import Groq
 
 views = Blueprint('views', __name__)
 
-@views.route('/', methods=['GET'])
-def homepage():
-    return render_template("homepage.html")
-
-@views.route('/home', methods=['GET', 'POST'])
-
 # Initialize Groq client (for chatbot)
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
 
+@views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
     if request.method == 'POST':
