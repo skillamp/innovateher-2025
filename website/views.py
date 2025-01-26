@@ -13,7 +13,7 @@ client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
 
 @views.route('/', methods=['GET', 'POST'])
-@login_required
+#@login_required
 def home():
     if request.method == 'POST':
         note = request.form.get('note')  # Gets the note from the HTML
@@ -45,7 +45,7 @@ def delete_note():
 
 
 @views.route('/chatbot', methods=['GET', 'POST'])
-@login_required
+#@login_required
 def chatbot():
     if request.method == 'POST':
         # Get the user's message from the JSON body
@@ -82,22 +82,22 @@ def todos():
     return render_template('todos.html')
 
 @views.route('/community', methods=['GET', 'POST'])
-@login_required
+#@login_required
 def community():
     return render_template('community.html')
 
 @views.route('/marketplace', methods=['GET', 'POST'])
-@login_required
+#@login_required
 def marketplace():
     return render_template('marketplace.html')
 
 @views.route('/dashboard')
-@login_required
+#@login_required
 def dashboard(): 
     return render_template("dashboard.html", user=current_user);
 
 @views.route('/resources', methods=['GET', 'POST'])
-@login_required
+#@login_required
 def resources():
     # Fetch the sustainability level from the current user's data
     sustainability_level = current_user.sustainability_level
