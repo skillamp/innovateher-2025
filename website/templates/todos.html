@@ -91,6 +91,7 @@
             
             try {
                 if (todosJson) {
+                    todoListContainer.innerHTML = `<div class="no-todos">${todosJson}</div>`;
                     todos = JSON.parse(todosJson);
                 }
             } catch (error) {
@@ -126,7 +127,7 @@
             });
 
             // Clear sessionStorage after loading todos
-            sessionStorage.removeItem('todos');
+            // sessionStorage.removeItem('todos');
         });
     </script>
 </body>

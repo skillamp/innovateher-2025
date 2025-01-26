@@ -146,7 +146,10 @@
                         sessionStorage.setItem('todos', JSON.stringify(data.reply.todos));
                         window.location.href = '/todos';
                     } else {
-                        addMessage(data.reply, 'bot-message');
+                        sessionStorage.setItem('todos', JSON.stringify(data.reply));
+                        window.location.href = '/todos';
+                        //addMessage(data.reply, 'bot-message');
+                        //addMessage("In the else statement", 'bot-message');
                     }
                 } else {
                     addMessage('Sorry, there was an error processing your request.', 'bot-message');
