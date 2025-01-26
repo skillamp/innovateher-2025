@@ -81,3 +81,7 @@ def todos():
     # Render the todos.html template (you need to serve the template from your static folder)
     return render_template('todos.html')
 
+@views.route('/community', methods=['GET', 'POST'])
+@login_required
+def community():
+    return render_template('community.html')
