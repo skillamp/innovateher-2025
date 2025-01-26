@@ -78,14 +78,21 @@
         if (data.reply) {
             // If bot provides to-dos, redirect to the to-do page with the to-do list
             if (data.reply.todos && Array.isArray(data.reply.todos)) {
-                const todoList = encodeURIComponent(JSON.stringify(data.reply.todos)); // Encode to pass as a URL parameter
-                window.location.href = `/todos`;
+                
             } else {
+                const todoList = encodeURIComponent(JSON.stringify(data.reply.todos)); // Encode to pass as a URL parameter
+                window.location.href = `/todos?list=${todoList}`;
+                const botMessageElement = document.createElement('div');
+                botMessageElement.classList.add('message', 'bot-message');
+                botMessageElement.textContent = data.reply;
+                document.getElementById('todo-list').appendChild(botMessageElement);
                 // Add bot's reply to the chatbox
+                /*
                 const botMessageElement = document.createElement('div');
                 botMessageElement.classList.add('message', 'bot-message');
                 botMessageElement.textContent = data.reply;
                 document.getElementById('chatbox').appendChild(botMessageElement);
+                */
             }
         } else {
             console.error('Error:', data.error);
