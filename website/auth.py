@@ -40,6 +40,8 @@ def sign_up():
     if request.method == 'POST':
         business_name = request.form.get('business_name')
         email = request.form.get('email')
+        firstname = request.form.get('firstname')
+        lastname = request.form.get('lastname')
         address = request.form.get('address')
         username = request.form.get('username')
         password = request.form.get('password')
@@ -52,15 +54,22 @@ def sign_up():
             flash('Email already exists.', category='error')
         elif len(email) < 4:
             flash('Email must be greater than 3 characters.', category='error')
+        elif not firstname.isalpha():
+            flash('First name must contain only letters.', category='error')
+        elif not lastname.isalpha():
+            flash('Last name must contain only letters.', category='error')
         elif len(username) < 2:
             flash('Username must be greater than 1 character.', category='error')
         elif len(password) < 7:
             flash('Password must be at least 7 characters.', category='error')
+
         else:
             # Create a new user with default sustainability level set to 0
             new_user = User(
                 business_name=business_name,
                 email=email,
+                firstname = firstname, 
+                lastname = lastname,
                 address=address,
                 username=username,
                 password=generate_password_hash(password, method='pbkdf2:sha256'),
