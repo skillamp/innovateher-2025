@@ -83,52 +83,53 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const todoListContainer = document.getElementById('todo-list');
-            
-            // Get todos from sessionStorage
-            const todosJson = sessionStorage.getItem('todos');
-            let todos = [];
-            
-            try {
-                if (todosJson) {
-                    todoListContainer.innerHTML = `<div class="no-todos">${todosJson}</div>`;
-                    todos = JSON.parse(todosJson);
-                }
-            } catch (error) {
-                console.error('Error parsing todos:', error);
-            }
+    const todoListContainer = document.getElementById('todo-list');
+    
+    // Get todos from sessionStorage
+    const todosJson = sessionStorage.getItem('todos');
+    let todos = [];
+    
+    try {
+        if (todosJson) {
+            // Split the paragraph into tasks using '\n'
+            todos = todosJson.split('\\n').map(task => task.trim()).filter(task => task.length > 0);
+        }
+    } catch (error) {
+        console.error('Error parsing todos:', error);
+    }
 
-            if (todos.length === 0) {
-                todoListContainer.innerHTML = '<div class="no-todos">No todos available</div>';
-                return;
-            }
+    if (todos.length === 0) {
+        todoListContainer.innerHTML = '<div class="no-todos">No todos available</div>';
+        return;
+    }
 
-            todos.forEach((todo, index) => {
-                const todoItem = document.createElement('div');
-                todoItem.classList.add('todo-item');
-                
-                const checkboxId = `todo-${index}`;
-                
-                const checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                checkbox.id = checkboxId;
-                
-                const label = document.createElement('label');
-                label.setAttribute('for', checkboxId);
-                label.textContent = todo;
+    todos.forEach((todo, index) => {
+        const todoItem = document.createElement('div');
+        todoItem.classList.add('todo-item');
+        
+        const checkboxId = `todo-${index}`;
+        
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = checkboxId;
+        
+        const label = document.createElement('label');
+        label.setAttribute('for', checkboxId);
+        label.textContent = todo;
 
-                checkbox.addEventListener('change', function() {
-                    todoItem.classList.toggle('completed', this.checked);
-                });
-
-                todoItem.appendChild(checkbox);
-                todoItem.appendChild(label);
-                todoListContainer.appendChild(todoItem);
-            });
-
-            // Clear sessionStorage after loading todos
-            // sessionStorage.removeItem('todos');
+        checkbox.addEventListener('change', function() {
+            todoItem.classList.toggle('completed', this.checked);
         });
+
+        todoItem.appendChild(checkbox);
+        todoItem.appendChild(label);
+        todoListContainer.appendChild(todoItem);
+    });
+
+    // Optionally clear sessionStorage after loading todos
+    // sessionStorage.removeItem('todos');
+});
+
     </script>
 </body>
 </html>
