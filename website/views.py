@@ -90,3 +90,12 @@ def community():
 @login_required
 def marketplace():
     return render_template('marketplace.html')
+
+@views.route('/resources', methods=['GET', 'POST'])
+@login_required
+def resources():
+    # Fetch the sustainability level from the current user's data
+    sustainability_level = current_user.sustainability_level
+
+    # Render the resources.html template and pass the sustainability_level
+    return render_template('resources.html', user=current_user, sustainability_level=sustainability_level)

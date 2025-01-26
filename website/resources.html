@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sustainability Tips and Resources</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-color: #7f9c6c;
+            --secondary-color: #3E8E41;
+            --background-color: #2F2F2F;
+            --text-color: #FFFFFF;
+            --sustainability-level-color: #1A1D23;
+            --sustainability-level-text-color: #34C759;
+        }
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+        .card {
+            background-color: var(--primary-color);
+            border: 1px solid var(--secondary-color);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .sustainability-level {
+            background-color: var(--sustainability-level-color);
+            color: var(--sustainability-level-text-color);
+            font-size: 48px;
+            font-weight: bold;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto p-4 pt-6 md:p-6 lg:p-12 xl:p-24">
+        <!-- Dynamically display the sustainability level -->
+        <div class="sustainability-level w-full mb-12">
+            Sustainability Level: {{ sustainability_level }}
+        </div>
+        <div class="card w-full lg:w-2/3 xl:w-1/2 mx-auto mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-secondary-color">10 Tips for Sustainable Practices</h2>
+            <ol class="list-decimal text-secondary-color">
+                <li>Reduce meat consumption to minimize greenhouse gas emissions</li>
+                <li>Use public transport, walk, or bike whenever possible</li>
+                <li>Use energy-efficient appliances and turn off lights when not in use</li>
+                <li>Conserve water by taking shorter showers and fixing leaks</li>
+                <li>Reduce, reuse, and recycle to minimize waste</li>
+                <li>Buy locally sourced and seasonal produce</li>
+                <li>Use eco-friendly cleaning products and personal care products</li>
+                <li>Support renewable energy sources and reduce carbon footprint</li>
+                <li>Get involved in your community to promote sustainability</li>
+                <li>Stay informed and educate others about sustainable practices</li>
+            </ol>
+        </div>
+        <div class="flex flex-wrap justify-center mb-12">
+            <div class="card w-full md:w-1/2 xl:w-1/2 p-4 mx-4 my-4">
+                <h3 class="text-xl font-bold mb-2 text-secondary-color">Resource 1: Sustainable Living Guide</h3>
+                <p class="text-secondary-color">Learn how to live a more sustainable lifestyle with our comprehensive guide.</p>
+                <a href="#" class="text-secondary-color hover:text-primary-color">Read more</a>
+            </div>
+            <div class="card w-full md:w-1/2 xl:w-1/2 p-4 mx-4 my-4">
+                <h3 class="text-xl font-bold mb-2 text-secondary-color">Resource 2: Eco-Friendly Product Directory</h3>
+                <p class="text-secondary-color">Find eco-friendly products and services in your area with our directory.</p>
+                <a href="#" class="text-secondary-color hover:text-primary-color">Explore directory</a>
+            </div>
+        </div>
+        <div class="flex flex-wrap justify-center mb-12">
+            <div class="card w-full md:w-1/2 xl:w-1/2 p-4 mx-4 my-4">
+                <h3 class="text-xl font-bold mb-2 text-secondary-color">Resource 3: Renewable Energy Calculator</h3>
+                <p class="text-secondary-color">Calculate your carbon footprint and learn how to reduce it with our renewable energy calculator.</p>
+                <a href="#" class="text-secondary-color hover:text-primary-color">Try the calculator</a>
+            </div>
+            <div class="card w-full md:w-1/2 xl:w-1/2 p-4 mx-4 my-4">
+                <h3 class="text-xl font-bold mb-2 text-secondary-color">Resource 4: Sustainable Community Forum</h3>
+                <p class="text-secondary-color">Join our community forum to connect with others who share your passion for sustainability.</p>
+                <a href="#" class="text-secondary-color hover:text-primary-color">Join the forum</a>
+            </div>
+        </div>
+        <div class="flex flex-wrap justify-center mb-12">
+            <div class="card w-full md:w-1/2 xl:w-1/2 p-4 mx-4 my-4">
+                <h3 class="text-xl font-bold mb-2 text-secondary-color">Resource 5: Eco-Friendly Recipe Book</h3>
+                <p class="text-secondary-color">Get inspired by our collection of eco-friendly recipes and cooking tips.</p>
+                <a href="#" class="text-secondary-color hover:text-primary-color">Download the book</a>
+            </div>
+            <div class="card w-full md:w-1/2 xl:w-1/2 p-4 mx-4 my-4">
+                <h3 class="text-xl font-bold mb-2 text-secondary-color">Resource 6: Sustainable Living Blog</h3>
+                <p class="text-secondary-color">Stay up-to-date with the latest news and trends in sustainable living with our blog.</p>
+                <a href="#" class="text-secondary-color hover:text-primary-color">Read the blog</a>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>
