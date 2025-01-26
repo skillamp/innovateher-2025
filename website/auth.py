@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
-from . import db   ##means from __init__.py import db
+from . import db   ## means from __init__.py import db
 from flask_login import login_user, login_required, logout_user, current_user
 
 
@@ -45,6 +45,7 @@ def sign_up():
         password = request.form.get('password')
         registration_id = request.form.get('registration_id')
 
+        # Check if email already exists in the database
         user = User.query.filter_by(email=email).first()
         if user:
             flash('Email already exists.', category='error')
@@ -55,12 +56,51 @@ def sign_up():
         elif len(password) < 7:
             flash('Password must be at least 7 characters.', category='error')
         else:
-            new_user = User(business_name = business_name, email=email, address = address, username=username, password=generate_password_hash(
-                password, method='pbkdf2:sha256'), registration_id = registration_id)
+            # Create a new user with default sustainability level set to 0
+            new_user = User(
+                business_name=business_name,
+                email=email,
+                address=address,
+                username=username,
+                password=generate_password_hash(password, method='pbkdf2:sha256'),
+                registration_id=registration_id,
+                sustainability_level=0  # Set default sustainability level to 0
+            )
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
             flash('Account created!', category='success')
-            return redirect(url_for('views.home'))
+            return redirect(url_for('auth.questionnaire'))  # Redirect to questionnaire page
 
     return render_template("signup.html", user=current_user)
+
+
+@auth.route('/questionnaire', methods=['GET', 'POST'])
+@login_required
+def questionnaire():
+    if request.method == 'POST':
+        # Collect answers from the form
+        total_score = 0
+        answers = request.form
+
+        # Iterate over the form data to calculate the total score
+        for key, value in answers.items():
+            total_score += int(value)
+
+        # Calculate sustainability level
+        if total_score >= 20:
+            sustainability_level = 'High Sustainability'
+        elif total_score >= 12:
+            sustainability_level = 'Moderate Sustainability'
+        else:
+            sustainability_level = 'Low Sustainability'
+
+        # Update user's sustainability level in the database
+        current_user.sustainability_level = total_score
+        db.session.commit()
+
+        # Redirect to a success page or dashboard
+        flash(f'Your Sustainability Level: {sustainability_level}', category='success')
+        return redirect(url_for('views.home'))  # Or any other page you want to redirect to
+
+    return render_template("questionnaire.html")

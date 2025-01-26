@@ -18,5 +18,5 @@ class User(db.Model, UserMixin):
     business_name = db.Column(db.String(150))
     username = db.Column(db.String(150), unique=True)
     registration_id = db.Column(db.String(500), unique=True)
-    sustainability_level = db.Column(db.Integer)
+    sustainability_level = db.Column(db.Integer, default=0)
     #notes = db.relationship('Note')

@@ -40,7 +40,9 @@
 </head>
 <body>
     <h1>Sustainability Assessment Questionnaire</h1>
-    <form id="sustainabilityForm">
+
+    <!-- Start of form tag -->
+    <form method="POST" action="{{ url_for('auth.questionnaire') }}">
         <div class="question">
             <p>1. How does your business source its energy?</p>
             <label><input type="radio" name="energy" value="3"> Primarily from renewable sources (e.g., solar, wind, hydro).</label><br>
@@ -105,7 +107,7 @@
             <label><input type="radio" name="products" value="0"> I’m not sure.</label>
         </div>
 
-        <button type="button" onclick="calculateScore()">Submit</button>
+        <button type="submit">Submit</button>
     </form>
 
     <div class="results" id="results">
@@ -139,3 +141,4 @@
     </script>
 </body>
 </html>
+
