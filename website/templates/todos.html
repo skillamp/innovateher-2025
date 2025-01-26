@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .todo-item {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Your To-Do List</h1>
+    <div id="todo-list"></div>
+    
+    <script>
+        // Get the to-do list from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const todoList = JSON.parse(decodeURIComponent(urlParams.get('list')));
+
+        // Render each to-do item with a checkbox
+        const todoListContainer = document.getElementById('todo-list');
+        
+        todoList.forEach(todo => {
+            const todoItem = document.createElement('div');
+            todoItem.classList.add('todo-item');
+            
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.id = todo;
+            
+            const label = document.createElement('label');
+            label.setAttribute('for', todo);
+            label.textContent = todo;
+
+            todoItem.appendChild(checkbox);
+            todoItem.appendChild(label);
+            todoListContainer.appendChild(todoItem);
+        });
+    </script>
+</body>
+</html>

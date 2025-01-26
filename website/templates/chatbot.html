@@ -25,6 +25,7 @@
         }
         .bot-message {
             background-color: #f1f8e9;
+
         }
         #message-input {
             width: 100%;
@@ -48,46 +49,55 @@
 
     <script>
         document.getElementById('send-btn').addEventListener('click', function() {
-            const messageInput = document.getElementById('message-input');
-            const message = messageInput.value.trim();
+    const messageInput = document.getElementById('message-input');
+    const message = messageInput.value.trim();
 
-            if (!message) {
-                return;
+    if (!message) {
+        return;
+    }
+
+    // Add user's message to the chatbox
+    const userMessageElement = document.createElement('div');
+    userMessageElement.classList.add('message', 'user-message');
+    userMessageElement.textContent = message;
+    document.getElementById('chatbox').appendChild(userMessageElement);
+
+    // Clear input field
+    messageInput.value = '';
+
+    // Send the message to Flask backend (via /chat endpoint)
+    fetch('/chatbot', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: message }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.reply) {
+            // If bot provides to-dos, redirect to the to-do page with the to-do list
+            if (data.reply.todos && Array.isArray(data.reply.todos)) {
+                const todoList = encodeURIComponent(JSON.stringify(data.reply.todos)); // Encode to pass as a URL parameter
+                window.location.href = `/todos`;
+            } else {
+                // Add bot's reply to the chatbox
+                const botMessageElement = document.createElement('div');
+                botMessageElement.classList.add('message', 'bot-message');
+                botMessageElement.textContent = data.reply;
+                document.getElementById('chatbox').appendChild(botMessageElement);
             }
+        } else {
+            console.error('Error:', data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
 
-            // Add user's message to the chatbox
-            const userMessageElement = document.createElement('div');
-            userMessageElement.classList.add('message', 'user-message');
-            userMessageElement.textContent = message;
-            document.getElementById('chatbox').appendChild(userMessageElement);
-
-            // Clear input field
-            messageInput.value = '';
-
-            // Send the message to Flask backend (via /chat endpoint)
-            fetch('/chat', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ message: message }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.reply) {
-                    // Add bot's reply to the chatbox
-                    const botMessageElement = document.createElement('div');
-                    botMessageElement.classList.add('message', 'bot-message');
-                    botMessageElement.textContent = data.reply;
-                    document.getElementById('chatbox').appendChild(botMessageElement);
-                } else {
-                    console.error('Error:', data.error);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        });
     </script>
 </body>
 </html>
+
+
