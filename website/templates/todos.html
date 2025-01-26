@@ -82,7 +82,7 @@
     </div>
     
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+       document.addEventListener('DOMContentLoaded', function() {
     const todoListContainer = document.getElementById('todo-list');
     
     // Get todos from sessionStorage
@@ -119,12 +119,25 @@
 
         checkbox.addEventListener('change', function() {
             todoItem.classList.toggle('completed', this.checked);
+            checkAllTodosChecked(); // Check after each change
         });
 
         todoItem.appendChild(checkbox);
         todoItem.appendChild(label);
         todoListContainer.appendChild(todoItem);
     });
+
+    // Function to check if all todos are checked
+    function checkAllTodosChecked() {
+        const checkboxes = todoListContainer.querySelectorAll('input[type="checkbox"]');
+        const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+        
+        if (allChecked) {
+            //sustainability_level = current_user.sustainability_level
+            alert("You are upgraded to the next level!");
+            window.location.href = '/';
+        }
+    }
 
     // Optionally clear sessionStorage after loading todos
     // sessionStorage.removeItem('todos');
