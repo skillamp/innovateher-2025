@@ -44,6 +44,7 @@ def sign_up():
         username = request.form.get('username')
         password = request.form.get('password')
         registration_id = request.form.get('registration_id')
+        industry = request.form.get('industry')
 
         # Check if email already exists in the database
         user = User.query.filter_by(email=email).first()
@@ -64,6 +65,7 @@ def sign_up():
                 username=username,
                 password=generate_password_hash(password, method='pbkdf2:sha256'),
                 registration_id=registration_id,
+                industry=industry,
                 sustainability_level=0  # Set default sustainability level to 0
             )
             db.session.add(new_user)
