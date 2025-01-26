@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+        }
+        .chatbox {
+            width: 100%;
+            height: 400px;
+            border: 1px solid #ddd;
+            padding: 20px;
+            overflow-y: auto;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .message {
+            margin: 10px 0;
+            padding: 12px 16px;
+            border-radius: 15px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+        .user-message {
+            background-color: #007bff;
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 5px;
+        }
+        .bot-message {
+            background-color: #f1f1f1;
+            color: black;
+            border-bottom-left-radius: 5px;
+        }
+        .input-container {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        #message-input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            resize: none;
+            font-family: inherit;
+        }
+        #send-btn {
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        #send-btn:hover {
+            background-color: #0056b3;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 10px 0;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="chatbox" id="chatbox"></div>
+        <div class="loading" id="loading">Processing your request...</div>
+        <div class="input-container">
+            <textarea id="message-input" placeholder="Type your message here..." rows="1"></textarea>
+            <button id="send-btn">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const chatbox = document.getElementById('chatbox');
+        const messageInput = document.getElementById('message-input');
+        const sendButton = document.getElementById('send-btn');
+        const loadingIndicator = document.getElementById('loading');
+
+        // Auto-resize textarea
+        messageInput.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+
+        // Handle Enter key
+        messageInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        sendButton.addEventListener('click', sendMessage);
+
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (!message) return;
+
+            // Add user message to chat
+            addMessage(message, 'user-message');
+            
+            // Clear input and reset height
+            messageInput.value = '';
+            messageInput.style.height = 'auto';
+            
+            // Show loading indicator
+            loadingIndicator.style.display = 'block';
+
+            // Send to backend
+            fetch('/chatbot', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: message }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Hide loading indicator
+                loadingIndicator.style.display = 'none';
+
+                if (data.reply) {
+                    if (data.reply.todos && Array.isArray(data.reply.todos)) {
+                        // Store todos in sessionStorage before redirect
+                        sessionStorage.setItem('todos', JSON.stringify(data.reply.todos));
+                        window.location.href = '/todos';
+                    } else {
+                        sessionStorage.setItem('todos', JSON.stringify(data.reply));
+                        window.location.href = '/todos';
+                        //addMessage(data.reply, 'bot-message');
+                        //addMessage("In the else statement", 'bot-message');
+                    }
+                } else {
+                    addMessage('Sorry, there was an error processing your request.', 'bot-message');
+                }
+            })
+            .catch(error => {
+                loadingIndicator.style.display = 'none';
+                addMessage('Sorry, there was an error connecting to the server.', 'bot-message');
+                console.error('Error:', error);
+            });
+        }
+
+        function addMessage(text, className) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', className);
+            messageElement.textContent = text;
+            chatbox.appendChild(messageElement);
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+    </script>
+</body>
+</html>
