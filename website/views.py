@@ -85,3 +85,8 @@ def todos():
 @login_required
 def community():
     return render_template('community.html')
+
+@views.route('/marketplace', methods=['GET', 'POST'])
+@login_required
+def marketplace():
+    return render_template('marketplace.html')
