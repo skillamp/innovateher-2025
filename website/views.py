@@ -91,6 +91,11 @@ def community():
 def marketplace():
     return render_template('marketplace.html')
 
+@views.route('/dashboard')
+@login_required
+def dashboard(): 
+    return render_template("dashboard.html", user=current_user);
+
 @views.route('/resources', methods=['GET', 'POST'])
 @login_required
 def resources():

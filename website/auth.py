@@ -19,7 +19,7 @@ def login():
             if check_password_hash(user.password, password):
                 flash('Logged in successfully!', category='success')
                 login_user(user, remember=True)
-                return redirect(url_for('views.home'))
+                return redirect(url_for('views.dashboard'))
             else:
                 flash('Incorrect password, try again.', category='error')
         else:
@@ -39,9 +39,9 @@ def logout():
 def sign_up():
     if request.method == 'POST':
         business_name = request.form.get('business_name')
-        email = request.form.get('email')
-        firstname = request.form.get('firstname')
-        lastname = request.form.get('lastname')
+        email = request.form.get('business_email')
+        firstname = request.form.get('first_name')
+        lastname = request.form.get('last_name')
         address = request.form.get('address')
         username = request.form.get('username')
         password = request.form.get('password')
@@ -119,6 +119,6 @@ def questionnaire():
 
         # Redirect to a success page or dashboard
         flash(f'Your Sustainability Level: {sustainability_level}', category='success')
-        return redirect(url_for('views.home'))  # Or any other page you want to redirect to
+        return redirect(url_for('views.dashboard'))  # Or any other page you want to redirect to
 
     return render_template("questionnaire.html")
