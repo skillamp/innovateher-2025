@@ -13,6 +13,8 @@ class Note(db.Model):
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150), unique=True)
+    firstname = db.Column(db.String(750))
+    lastname = db.Column(db.String(750))
     address = db.Column(db.String(750))
     password = db.Column(db.String(150))
     business_name = db.Column(db.String(150))
