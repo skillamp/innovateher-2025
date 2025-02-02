@@ -1,7 +1,7 @@
 # innovateher-2025
 
 Green Circuit Web App 
-[![Green Circuit(https://github.com/skillamp/innovateher-2025/blob/main/green%20circuit.png?raw=true)](https://www.youtube.com/watch?v=-9RsNeVwgKI&t=2s)
+[![Green Circuit(https://raw.githubusercontent.com/skillamp/innovateher-2025/refs/heads/main/green%20circuit.png)](https://www.youtube.com/watch?v=-9RsNeVwgKI&t=2s)
 
 Overview:
 This Women-Led Sustainable Business Platform is a web application designed to empower women entrepreneurs by connecting them with like-minded, eco-conscious women business owners and sustainable product vendors. The platform supports women-owned businesses in making meaningful strides toward sustainability through networking, collaboration, and shared resources.
