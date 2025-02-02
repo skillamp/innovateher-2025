@@ -10,6 +10,7 @@ Overview:
 This Women-Led Sustainable Business Platform is a web application designed to empower women entrepreneurs by connecting them with like-minded, eco-conscious women business owners and sustainable product vendors. The platform supports women-owned businesses in making meaningful strides toward sustainability through networking, collaboration, and shared resources.
 
 Features:
+
 Sustainability Assessment & To-Do List:
 Assess your business’s sustainability level and create actionable steps to improve your eco-friendly practices.
 
@@ -30,7 +31,7 @@ Frontend:
 HTML, CSS, JavaScript (Tailwind CSS)
 
 Backend:
-Flask 
+Flask, Groq AI 
 
 
 Setup & Installation:
@@ -45,12 +46,11 @@ Clone the repository:
 bash
 Copy
 git clone https://github.com/yourusername/your-repo-name.git
-Navigate into the project folder:
 
+Navigate into the project folder:
 bash
 Copy
 cd your-repo-name
-(Optional) Create and activate a virtual environment:
 
 bash
 Copy
