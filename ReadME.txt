@@ -1,7 +1,7 @@
 Green Circuit Web App 
 
 Overview:
-The Women-Led Sustainable Business Platform is a web application designed to empower women entrepreneurs by connecting them with like-minded, eco-conscious women business owners and sustainable product vendors. The platform supports women-owned businesses in making meaningful strides toward sustainability through networking, collaboration, and shared resources.
+This Women-Led Sustainable Business Platform is a web application designed to empower women entrepreneurs by connecting them with like-minded, eco-conscious women business owners and sustainable product vendors. The platform supports women-owned businesses in making meaningful strides toward sustainability through networking, collaboration, and shared resources.
 
 Features:
 Sustainability Assessment & To-Do List:
@@ -16,7 +16,7 @@ Access a curated list of sustainable vendors offering eco-friendly products and 
 Resources & Tips Based on Sustainability Level:
 Receive personalized resources and tips based on your business's sustainability level. Whether you're just beginning or are already a sustainability leader, the platform delivers content tailored to help improve and expand your sustainable efforts.
 
-Why This App Matters
+Why This App Matters:
 Women make up only 14% of global business owners, but they represent 32% of the workforce in renewable energy and are more likely to start businesses in green industries. This platform empowers women entrepreneurs to drive sustainability efforts, attract eco-conscious customers, and connect with investors prioritizing climate action.
 
 Tech Stack
